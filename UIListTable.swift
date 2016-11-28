@@ -40,9 +40,10 @@ class UIListTable: UIView {
     }
     
     func remove(index: Int) {
-        list.removeAtIndex(index)
-        
-        setNeedsDisplay()
+        if index < list.count {
+            list.removeAtIndex(index)
+            setNeedsDisplay()
+        }
     }
     
     override func drawRect(rect: CGRect) {
