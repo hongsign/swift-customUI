@@ -46,6 +46,7 @@ class UIListTable: UIView {
     }
     
     override func drawRect(rect: CGRect) {
+        view.subviews.forEach({ $0.removeFromSuperview() })
         for i in 0..<list.count {
             for j in 0..<list[i].count {
                 var width: CGFloat = 0
