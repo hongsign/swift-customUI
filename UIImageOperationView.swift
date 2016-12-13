@@ -102,7 +102,7 @@ class UIImageOperationView: UIView {
             contenttypes.append(.origin)
         }
     }
-    
+    /*
     func addZone(rect: CGRect, contenttype: ImageContentType) {
         zones.append(rect)
         originimages.append(originimage.getPartialImage(rect)!)
@@ -111,11 +111,15 @@ class UIImageOperationView: UIView {
         
         setNeedsDisplay()
     }
+    */
     
     func updateZone(index: Int, contenttype: ImageContentType) {
         if index < zones.count {
-            contenttypes[index] = contenttype
-            setNeedsDisplay()
+            if contenttypes[index] != contenttype {
+                contenttypes[index] = contenttype
+                setNeedsDisplay()
+            }
+
         }
     }
     
