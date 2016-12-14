@@ -27,4 +27,7 @@ class Stack<Element> {
         return items.count
     }
     
+    func removeAll() {
+        items.removeAll()
+    
 }
