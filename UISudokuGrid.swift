@@ -24,8 +24,11 @@ class UISudokuGrid: UIView {
     
     var currentpos: (row: Int, col: Int) = (0,0)
     
-    var textcolor: UIColor = UIColor.blackColor()
-    var selectedcolor: UIColor = UIColor.redColor()
+    let textcolor: UIColor = UIColor.blackColor()
+    let selectedcolor: UIColor = UIColor.redColor()
+    
+    let bgcolor: UIColor = UIColor.clearColor()
+    let selectedbgcolor: UIColor = UIColor.lightGrayColor()
     
     var dropdown: DropDown!
     
@@ -110,6 +113,7 @@ class UISudokuGrid: UIView {
         dropdown.selectionAction = { [unowned self] (index, item) in
             self.grid[self.currentpos.row][self.currentpos.col].text = item
             self.grid[self.currentpos.row][self.currentpos.col].layer.borderColor = self.textcolor.CGColor
+            self.grid[self.currentpos.row][self.currentpos.col].backgroundColor = self.bgcolor
             self.dropdownshowed = false
             self.dropdown.hide()
         }
@@ -159,7 +163,7 @@ class UISudokuGrid: UIView {
         */
         if dropdownshowed {
             grid[currentpos.row][currentpos.col].layer.borderColor = textcolor.CGColor
-            grid[currentpos.row][currentpos.col].backgroundColor = UIColor.lightGrayColor()
+            grid[currentpos.row][currentpos.col].backgroundColor = bgcolor//UIColor.lightGrayColor()
             dropdownshowed = false
             dropdown.hide()
         }
@@ -175,10 +179,12 @@ class UISudokuGrid: UIView {
                 }
             }
             grid[currentpos.row][currentpos.col].layer.borderColor = selectedcolor.CGColor
+            grid[currentpos.row][currentpos.col].backgroundColor = selectedbgcolor
 
-            let c = CGFloat(currentpos.col)
-            dropdown.frame.origin.x = c * border + (c + 1) * padding
-            
+            //let c = CGFloat(currentpos.col)
+            //dropdown.frame.origin.x = c * border + (c + 1) * padding
+            //dropdown.center = grid[currentpos.row][currentpos.col].center
+            dropdown.anchorView = grid[currentpos.row][currentpos.col]
             dropdownshowed = true
             dropdown.show()
         }
